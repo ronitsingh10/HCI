@@ -1,7 +1,25 @@
-import React from 'react';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import PropertyDetails from "./pages/PropertyDetails";
+import HomeSlider from "./pages/HomeSlider";
+import Chat from "./pages/Chat";
 
 const App = () => {
-  return <div>react app</div>;
+  return (
+    <div className="max-w-[1440px] mx-auto bg-white">
+      <Header />
+      <Routes>
+        <Route path="/" element={<HomeSlider />} />
+        <Route path="/Home" element={<Home />} />
+        <Route path="/property/:id" element={<PropertyDetails />} />
+        <Route path="/GPT" element={<Chat />} />
+      </Routes>
+      <Footer />
+    </div>
+  );
 };
 
 export default App;

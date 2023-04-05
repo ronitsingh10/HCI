@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 
 // import icons
-import { RiHome5Line, RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
+import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
+import { IoBedOutline } from "react-icons/io5";
 
 // import headless ul
 import { Menu } from "@headlessui/react";
@@ -9,10 +10,31 @@ import { Menu } from "@headlessui/react";
 // import house context
 import { HouseContext } from "./HouseContext";
 
-const PropertyDropdown = () => {
-  const { property, setProperty, properties } = useContext(HouseContext);
+const BedsDropdown = () => {
+  const { bed, setBed } = useContext(HouseContext);
 
   const [isOpen, setIsOpen] = useState(false);
+
+  const beds = [
+    {
+      value: "Beds count (any)",
+    },
+    {
+      value: "1",
+    },
+    {
+      value: "2",
+    },
+    {
+      value: "3",
+    },
+    {
+      value: "4",
+    },
+    {
+      value: "5",
+    },
+  ];
 
   return (
     <Menu as="div" className="dropdown relative">
@@ -20,12 +42,9 @@ const PropertyDropdown = () => {
         onClick={() => setIsOpen(!isOpen)}
         className="dropdown-btn w-full text-left"
       >
-        <RiHome5Line className="dropdown-icon-primary" />
+        <IoBedOutline className="dropdown-icon-primary" />
         <div>
-          <div className="text-[15px] font-medium leading-tight">
-            {property}
-          </div>
-          {/* <div className="text-[13px]">Select your place</div> */}
+          <div className="text-[15px] font-medium leading-tight">{bed}</div>
         </div>
         {isOpen ? (
           <RiArrowUpSLine className="dropdown-icon-secondary" />
@@ -34,15 +53,15 @@ const PropertyDropdown = () => {
         )}
       </Menu.Button>
       <Menu.Items className="dropdown-menu">
-        {properties.map((property, index) => {
+        {beds.map((bed, index) => {
           return (
             <Menu.Item
-              onClick={() => setProperty(property)}
+              onClick={() => setBed(bed.value)}
               className="cursor-pointer hover:text-violet-700 transition"
               as="li"
               key={index}
             >
-              {property}
+              {bed.value}
             </Menu.Item>
           );
         })}
@@ -51,4 +70,4 @@ const PropertyDropdown = () => {
   );
 };
 
-export default PropertyDropdown;
+export default BedsDropdown;

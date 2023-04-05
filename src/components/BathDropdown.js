@@ -1,7 +1,9 @@
 import React, { useContext, useState } from "react";
 
 // import icons
-import { RiHome5Line, RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
+import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
+
+import { MdOutlineBathtub } from "react-icons/md";
 
 // import headless ul
 import { Menu } from "@headlessui/react";
@@ -9,10 +11,31 @@ import { Menu } from "@headlessui/react";
 // import house context
 import { HouseContext } from "./HouseContext";
 
-const PropertyDropdown = () => {
-  const { property, setProperty, properties } = useContext(HouseContext);
+const BathsDropdown = () => {
+  const { bath, setBath } = useContext(HouseContext);
 
   const [isOpen, setIsOpen] = useState(false);
+
+  const baths = [
+    {
+      value: "Baths count (any)",
+    },
+    {
+      value: "1",
+    },
+    {
+      value: "2",
+    },
+    {
+      value: "3",
+    },
+    {
+      value: "4",
+    },
+    {
+      value: "5",
+    },
+  ];
 
   return (
     <Menu as="div" className="dropdown relative">
@@ -20,12 +43,9 @@ const PropertyDropdown = () => {
         onClick={() => setIsOpen(!isOpen)}
         className="dropdown-btn w-full text-left"
       >
-        <RiHome5Line className="dropdown-icon-primary" />
+        <MdOutlineBathtub className="dropdown-icon-primary" />
         <div>
-          <div className="text-[15px] font-medium leading-tight">
-            {property}
-          </div>
-          {/* <div className="text-[13px]">Select your place</div> */}
+          <div className="text-[15px] font-medium leading-tight">{bath}</div>
         </div>
         {isOpen ? (
           <RiArrowUpSLine className="dropdown-icon-secondary" />
@@ -34,15 +54,15 @@ const PropertyDropdown = () => {
         )}
       </Menu.Button>
       <Menu.Items className="dropdown-menu">
-        {properties.map((property, index) => {
+        {baths.map((bath, index) => {
           return (
             <Menu.Item
-              onClick={() => setProperty(property)}
+              onClick={() => setBath(bath.value)}
               className="cursor-pointer hover:text-violet-700 transition"
               as="li"
               key={index}
             >
-              {property}
+              {bath.value}
             </Menu.Item>
           );
         })}
@@ -51,4 +71,4 @@ const PropertyDropdown = () => {
   );
 };
 
-export default PropertyDropdown;
+export default BathsDropdown;
