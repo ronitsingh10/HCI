@@ -8,7 +8,11 @@ import ChatGPT from "../components/chatGPT";
 const Chat = () => {
   const { houses, loading } = useContext(HouseContext);
 
-  return <div className="">{/* <ChatGPT /> */}</div>;
+  return (
+    <div className="">
+      <ChatGPT />
+    </div>
+  );
 };
 
 export default Chat;
